@@ -1,9 +1,9 @@
 Maestro
 ============
 
-Maestro provides the ability to easily launch, orchestrate and manage mulitple Docker containers as single unit. Container sets are defined in a simple YAML format that allows you to define how the containers should be created and to specify relationships between containers. The intention is to make easy to create and use complex multi-node container envionments for testing and development.
+Maestro provides the ability to easily launch, orchestrate and manage multiple Docker containers as a single unit. Container sets are defined in a simple YAML format that allows you to define how the containers should be created and to specify relationships between containers. The intention is to make it easy to create and use complex multi-node container envionments for testing and development.
 
-This is what it currently looks like to use maestro and deploy a multi-tier node.js/mongodb application. All that's required is a maestro.yml in the root of the repository.
+This is what it currently looks like to use maestro and deploy a multi-tier node.js/mongodb application. All that's required is a maestro.yml file in the root of the repository.
 
 ```
 $ git clone https://github.com/kstaken/express-todo-example.git
@@ -36,14 +36,14 @@ Starting container nodejs - 52be61a3242c
 Started.
 ```
 
-In this example the app would be accessible on http://localhost:49184/.
+In this example the app would be accessible at http://localhost:49184/.
 
 Status
 ======
 
 Early development. It can be useful for testing and development but the feature set and configuration format are changing rapidly.
 
-Note: this project used to be called DockerMix.
+Note: This project used to be called DockerMix.
 
 Features
 ========
@@ -88,7 +88,7 @@ Configuration File Format
 
 The configuration file defines an environment that is made up of multiple templates that can be used to generate containers. The templates can have relationships defined between them to specify start order and Maestro will handle starting instances of the templates in containers in the correct order and then providing environment configuration to the containers.
 
-This example will setup two templates, one for nodejs and one for mongodb. The nodejs template depends on mongodb so that when you start the environment no nodejs containers will be started until a mongdb container is fully up and running.
+This example will setup two templates, one for nodejs and one for mongodb. The nodejs template depends on mongodb so that when you start the environment no nodejs containers will be started until a Mongdb container is fully up and running.
 
 In this instance the templates are built from repositories stored on Github but there are various ways to set these up.
 
@@ -113,7 +113,7 @@ templates:
       url: github.com/toscanini/docker-mongodb
 ```
 
-To build and launch an environment you just place this config in a file named `maestro.yml` then run `maestro build`. It will take a few seconds to start as it waits for MongoDB to initialize. Currently the environment state lives in the current directory but that will have more flexibility in the future.
+To build and launch an environment you just place this config in a file named `maestro.yml` then run `maestro build`. It will take a few seconds to start as it waits for MongoDB to initialize. Currently the environment state lives in the current directory but that will be more flexible in the future.
 
 Templates also define a basic docker configuration so that you can pre-define the parameters used on docker run.
 
@@ -166,15 +166,15 @@ If you want to create a named environment you can use `-n` to set the name and i
 
 `maestro build`
 
-Setup a new environment using a `maestro.yml` specification.
+Setup a new environment using a `maestro.yml` file.
 
 `maestro start [node_name]`
 
-Start an existing environment that had been previously stopped and saved in `environment.yml`. If `node_name` is provided just that node will be stopped.
+Start an existing environment that had been previously stopped and saved in `environment.yml`. If `node_name` is provided only that node will be started.
 
 `maestro stop [node_name]`
 
-Stop all containers in an environment and save the state to `environment.yml` If `node_name` is provided just that node will be stopped.
+Stop all containers in an environment and save the state to `environment.yml` If `node_name` is provided only that node will be stopped.
 
 `maestro run template [commandline]`
 
@@ -182,7 +182,7 @@ Run a new instance of the template in the environment. *Limited functionality on
 
 `maestro destroy`
 
-Destroy all containers defined in an environment. Once destroyed the containers can not be recoved.
+Destroy all containers defined in an environment. Once destroyed the containers can not be recovered.
 
 `maestro ps`
 
